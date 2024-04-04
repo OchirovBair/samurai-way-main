@@ -1,0 +1,12 @@
+.post_wrapper {
+    display: flex;
+    align-items: center;
+
+    img {
+        height: 58px;
+        width: 58px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 50%;
+    }
+}

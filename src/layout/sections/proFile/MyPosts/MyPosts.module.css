@@ -1,0 +1,8 @@
+.post_input_wrapper {
+    display: flex;
+    flex-direction: column;
+
+    button {
+        align-self: end;
+    }
+}
