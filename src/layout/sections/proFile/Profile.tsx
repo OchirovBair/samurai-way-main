@@ -1,15 +1,17 @@
 import React from 'react';
-import mainImg from '../../../assets/forest.jpg'
-import avatar from '../../../assets/avatar.jpg'
-import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
-import { ProfileInfo } from './ProfileInfo/ProfileInfo';
+import {ProfileInfo} from './ProfileInfo/ProfileInfo';
+import {PostDataType} from "../../../index";
 
-export const Profile = () => {
+type ProfilePropsType = {
+    postsData: PostDataType[]
+}
+
+export const Profile = ({postsData}:ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts/>
+            <MyPosts postsData={postsData}/>
         </div>
     );
 };

@@ -1,8 +1,14 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {PostDataType} from "../../../../index";
 
-export const MyPosts = () => {
+type MyPostsPropsType = {
+    postsData: PostDataType[]
+}
+
+export const MyPosts = ({postsData}:MyPostsPropsType) => {
+    const postsElements = postsData.map(post=> <Post message={post.message} likes={post.likesCount}/>)
     return (
         <div>
             <div className={s.post_input_wrapper}>
@@ -13,10 +19,7 @@ export const MyPosts = () => {
                 </div>
             </div>
             <div>
-               <Post/>
-               <Post/>
-               <Post/>
-               <Post/>
+                {postsElements}
             </div>
         </div>
     );

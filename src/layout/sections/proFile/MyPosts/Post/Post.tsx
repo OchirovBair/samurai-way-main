@@ -2,11 +2,19 @@ import React from 'react';
 import postAvatar from '../../../../../assets/postAvatar.jpg'
 import s from './Post.module.css'
 
-export const Post = () => {
+type PostPropsType = {
+    message: string
+    likes: number
+}
+
+export const Post = ({likes, message}: PostPropsType) => {
     return (
         <div className={s.post_wrapper}>
             <img src={postAvatar} alt="post avatar"/>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, asperiores.</p>
+            <div>
+                <p>{message}</p>
+                <span>likes {likes}</span>
+            </div>
         </div>
     );
 };
