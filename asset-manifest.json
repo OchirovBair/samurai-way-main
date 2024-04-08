@@ -1,17 +1,21 @@
 {
   "files": {
-    "main.css": "/samurai-way-main/static/css/main.b0dc25d3.css",
-    "main.js": "/samurai-way-main/static/js/main.6bcc6667.js",
+    "main.css": "/samurai-way-main/static/css/main.e8aa2108.css",
+    "main.js": "/samurai-way-main/static/js/main.a1aa02f5.js",
     "static/media/forest.jpg": "/samurai-way-main/static/media/forest.39b5ec964b3c647691d4.jpg",
     "static/media/avatar.jpg": "/samurai-way-main/static/media/avatar.a58fcfd7e10c5585494c.jpg",
+    "static/media/avatarSasha.webp": "/samurai-way-main/static/media/avatarSasha.fcde4926648c883d16a8.webp",
+    "static/media/avatarOleg.jpg": "/samurai-way-main/static/media/avatarOleg.70cbe5fad9b5d91b4465.jpg",
     "static/media/postAvatar.jpg": "/samurai-way-main/static/media/postAvatar.6911f13fbf4751d5c3d9.jpg",
+    "static/media/avatarNasty.webp": "/samurai-way-main/static/media/avatarNasty.866bc103647e2c42ac62.webp",
+    "static/media/avatarMisha.jpg": "/samurai-way-main/static/media/avatarMisha.ce58b390410222fcb6e6.jpg",
     "static/media/icon-sprite.svg": "/samurai-way-main/static/media/icon-sprite.7e734234f3f980d27c6917212b79130e.svg",
     "index.html": "/samurai-way-main/index.html",
-    "main.b0dc25d3.css.map": "/samurai-way-main/static/css/main.b0dc25d3.css.map",
-    "main.6bcc6667.js.map": "/samurai-way-main/static/js/main.6bcc6667.js.map"
+    "main.e8aa2108.css.map": "/samurai-way-main/static/css/main.e8aa2108.css.map",
+    "main.a1aa02f5.js.map": "/samurai-way-main/static/js/main.a1aa02f5.js.map"
   },
   "entrypoints": [
-    "static/css/main.b0dc25d3.css",
-    "static/js/main.6bcc6667.js"
+    "static/css/main.e8aa2108.css",
+    "static/js/main.a1aa02f5.js"
   ]
 }
