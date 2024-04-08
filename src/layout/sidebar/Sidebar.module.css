@@ -1,4 +1,7 @@
 .sidebar_wrapper {
     background-color: #426bc7;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

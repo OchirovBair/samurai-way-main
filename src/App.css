@@ -11,6 +11,7 @@ ul {
 }
 
 .App {
+    height: 100vh;
     display: grid;
     grid-template-columns: 200px 1fr;
     grid-template-rows: 74px auto;
@@ -22,5 +23,6 @@ ul {
 
 .app-wrapper-content {
     background-color: #22b0d0;
+    overflow-y: auto;
 }
 

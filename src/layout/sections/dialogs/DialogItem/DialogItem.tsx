@@ -1,16 +1,17 @@
 import React from 'react';
 import s from "./DialogItem.module.css";
 import {NavLink} from "react-router-dom";
+import {DialogType} from "../../../../redux/state";
 
 type DialogItemPropsType = {
-    name: string
-    id: number
+    dialog: DialogType
 }
 
-export const DialogItem = ({name, id}: DialogItemPropsType) => {
+export const DialogItem = ({dialog}: DialogItemPropsType) => {
     return (
         <div className={s.dialog}>
-            <NavLink activeClassName={s.active} to={'/dialogs/' + id}>{name}</NavLink>
+            <img className={s.dialogImg} src={dialog.avatar} alt={dialog.avatar}/>
+            <NavLink activeClassName={s.active} to={'/dialogs/' + dialog.id}>{dialog.name}</NavLink>
         </div>
     );
 };

@@ -12,13 +12,13 @@
     color: gold;
 }
 
-.dialog {
-
-}
-
 .messages {
-    padding: 10px;
-}
-.message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 
+    & > div:nth-child(2n) {
+        align-self: flex-end;
+    }
 }

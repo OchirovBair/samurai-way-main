@@ -1,20 +1,21 @@
 import React from 'react';
-import {DataType, Menu, MenuPropsType} from "./Menu/Menu";
-import {v1} from "uuid";
+import {Menu} from "./Menu/Menu";
 import s from './Sidebar.module.css'
+import {FriendType, SidebarButtonType} from "../../redux/state";
+import { FriendsBar } from './FriendsBar/FriendsBar';
 
-const sideBarData:Array<DataType> = [
-    {id: v1(), title:'profile'},
-    {id: v1(), title:'dialogs'},
-    {id: v1(), title:'news'},
-    {id: v1(), title:'music'},
-    {id: v1(), title:'settings'},
-]
+type SidebarPropsType = {
+    state: {
+        sidebarButtonsName: SidebarButtonType[]
+        friendsList: FriendType[]
+    }
+}
 
-export const Sidebar = () => {
+export const Sidebar = ({state}:SidebarPropsType) => {
     return (
         <nav className={s.sidebar_wrapper}>
-            <Menu data={sideBarData}/>
+            <Menu sidebarButtonsName={state.sidebarButtonsName}/>
+            <FriendsBar friendsList={state.friendsList}/>
         </nav>
     );
 };

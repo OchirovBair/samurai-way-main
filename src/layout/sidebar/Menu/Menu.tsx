@@ -1,19 +1,16 @@
 import React from 'react';
 import s from './Menu.module.css'
 import {NavLink} from "react-router-dom";
+import {SidebarButtonType} from "../../../redux/state";
 
-export type DataType = {
-    title: string
-    id: string
-}
 export type MenuPropsType = {
-    data: Array<DataType>
+    sidebarButtonsName: SidebarButtonType[]
 }
 
-export const Menu = ({ data }: MenuPropsType) => {
+export const Menu = ({sidebarButtonsName}: MenuPropsType) => {
     return (
         <ul>
-            {data.map((el) => {
+            {sidebarButtonsName.map((el) => {
                 const title = el.title.charAt(0).toUpperCase() + el.title.slice(1);
                 return (
                     <li className={s.item} key={el.id}>
