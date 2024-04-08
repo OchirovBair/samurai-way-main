@@ -34,21 +34,27 @@ export type SidebarButtonType = {
     title: string
 }
 
-export type StateType = {
-    profilePage: {
-        posts: PostType[]
-    }
-    dialogsPage: {
-        dialogs: DialogType[]
-        messages: MessageType[]
-    }
-    sidebar: {
-        sidebarButtonsName:SidebarButtonType[]
-        friendsList: FriendType[]
-    }
+export type ProfilePageType = {
+    posts: PostType[]
 }
 
-export const state: StateType = {
+export type DialogsPageType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+}
+
+export type SidebarType = {
+    sidebarButtonsName: SidebarButtonType[]
+    friendsList: FriendType[]
+}
+
+export type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+    sidebar: SidebarType
+}
+
+export const state: RootStateType = {
     profilePage: {
         posts: [
             {id: v1(), message: 'How are you?', likesCount: 10},
@@ -87,3 +93,11 @@ export const state: StateType = {
         ]
     }
 }
+
+//--------------------------- func-----------------------------
+
+export const addPost = (postMessage: string) => {
+    const newPost:PostType = {id: v1(), message: postMessage, likesCount: 0}
+    state.profilePage.posts.push(newPost)
+}
+

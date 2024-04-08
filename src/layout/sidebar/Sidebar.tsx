@@ -1,14 +1,11 @@
 import React from 'react';
 import {Menu} from "./Menu/Menu";
 import s from './Sidebar.module.css'
-import {FriendType, SidebarButtonType} from "../../redux/state";
+import {FriendType, SidebarButtonType, SidebarType} from "../../redux/state";
 import { FriendsBar } from './FriendsBar/FriendsBar';
 
 type SidebarPropsType = {
-    state: {
-        sidebarButtonsName: SidebarButtonType[]
-        friendsList: FriendType[]
-    }
+    state: SidebarType
 }
 
 export const Sidebar = ({state}:SidebarPropsType) => {
