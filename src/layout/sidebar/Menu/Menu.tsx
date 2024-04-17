@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Menu.module.css'
 import {NavLink} from "react-router-dom";
-import {SidebarButtonType} from "../../../redux/state";
+import {SidebarButtonType} from "../../../redux/types";
 
 export type MenuPropsType = {
     sidebarButtonsName: SidebarButtonType[]

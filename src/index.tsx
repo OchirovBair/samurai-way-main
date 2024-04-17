@@ -1,5 +1,5 @@
 import './index.css';
-import {addPost, changePostText, RootStateType, state, subscribe} from "./redux/state";
+import {store} from "./redux/state";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
@@ -7,14 +7,14 @@ import React from "react";
 
 
 
-const renderTree = (state: RootStateType) => {
+const renderTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} addPost={addPost} changePostText={changePostText}/>
+            <App state={store.getState()} addPost={store.addPost.bind(store)} changePostText={store.changePostText.bind(store)}/>
         </BrowserRouter>, document.getElementById('root'));
 }
 
 
-renderTree(state)
+renderTree()
 
-subscribe(renderTree)
+store.subscribe(renderTree)

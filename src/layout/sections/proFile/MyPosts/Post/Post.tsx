@@ -1,7 +1,7 @@
 import React from 'react';
 import postAvatar from '../../../../../assets/postAvatar.jpg'
 import s from './Post.module.css'
-import {PostType} from "../../../../../redux/state";
+import {PostType} from "../../../../../redux/types";
 
 type PostPropsType = PostType
 

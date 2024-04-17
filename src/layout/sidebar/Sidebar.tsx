@@ -1,8 +1,8 @@
 import React from 'react';
 import {Menu} from "./Menu/Menu";
 import s from './Sidebar.module.css'
-import {FriendType, SidebarButtonType, SidebarType} from "../../redux/state";
-import { FriendsBar } from './FriendsBar/FriendsBar';
+import {SidebarType} from "../../redux/types";
+import {FriendsBar} from './FriendsBar/FriendsBar';
 
 type SidebarPropsType = {
     state: SidebarType
