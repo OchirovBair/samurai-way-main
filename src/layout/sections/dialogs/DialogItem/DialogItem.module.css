@@ -5,6 +5,11 @@
     margin-bottom: 30px;
 }
 
+.active {
+    color: gold;
+
+}
+
 .dialogImg {
     width: 60px;
     height: 60px;

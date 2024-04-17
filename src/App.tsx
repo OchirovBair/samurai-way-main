@@ -8,20 +8,21 @@ import {Route} from "react-router-dom";
 import {News} from "./layout/sections/news/News";
 import {Music} from "./layout/sections/music/Music";
 import {Settings} from "./layout/sections/settings/Settings";
-import {RootStateType} from "./redux/state";
+import {changePostText, RootStateType} from "./redux/state";
 
 type AppPropsType = {
     state: RootStateType
-    addPost: (postMessage: string)=>void
+    addPost: ()=>void
+    changePostText: (newPostText:string)=>void
 }
 
-function App({state, addPost}: AppPropsType) {
+function App({state, addPost, changePostText}: AppPropsType) {
     return (
         <div className='App'>
             <Header/>
             <Sidebar state={state.sidebar}/>
             <div className='app-wrapper-content'>
-                <Route path='/profile' render={() => <Profile state={state.profilePage} addPost={addPost}/>}/>
+                <Route path='/profile' render={() => <Profile state={state.profilePage} addPost={addPost} changePostText={changePostText}/>}/>
                 <Route path='/dialogs/' render={() => <Dialogs state={state.dialogsPage}/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>

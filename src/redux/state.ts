@@ -4,12 +4,13 @@ import avatarMisha from '../assets/dialog-avatars/avatarMisha.jpg'
 import avatarOleg from '../assets/dialog-avatars/avatarOleg.jpg'
 import avatarNasty from '../assets/dialog-avatars/avatarNasty.webp'
 
+//------------------- types --------------------------
+
 export type DialogType = {
     name: string
     id: string
     avatar: string
 }
-
 
 export type MessageType = {
     id: string
@@ -36,6 +37,7 @@ export type SidebarButtonType = {
 
 export type ProfilePageType = {
     posts: PostType[]
+    newPostText: string
 }
 
 export type DialogsPageType = {
@@ -54,8 +56,12 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
+
+//------------------- state --------------------------
+
 export const state: RootStateType = {
     profilePage: {
+        newPostText: '',
         posts: [
             {id: v1(), message: 'How are you?', likesCount: 10},
             {id: v1(), message: 'Yo?', likesCount: 21},
@@ -80,11 +86,11 @@ export const state: RootStateType = {
     },
     sidebar: {
         sidebarButtonsName: [
-            {id: v1(), title:'profile'},
-            {id: v1(), title:'dialogs'},
-            {id: v1(), title:'news'},
-            {id: v1(), title:'music'},
-            {id: v1(), title:'settings'},
+            {id: v1(), title: 'profile'},
+            {id: v1(), title: 'dialogs'},
+            {id: v1(), title: 'news'},
+            {id: v1(), title: 'music'},
+            {id: v1(), title: 'settings'},
         ],
         friendsList: [
             {id: v1(), name: 'Sasha', avatar: avatarSasha},
@@ -94,10 +100,35 @@ export const state: RootStateType = {
     }
 }
 
-//--------------------------- func-----------------------------
 
-export const addPost = (postMessage: string) => {
-    const newPost:PostType = {id: v1(), message: postMessage, likesCount: 0}
-    state.profilePage.posts.push(newPost)
+// ------------------- pub-sub functions ------------------------
+
+let rerenderTree: (state: RootStateType) => void = () => {} // после рендера index.tsx rerenderTree становится функцией renderTree посредством функции subscribe
+
+export const subscribe = (observer: (state:RootStateType) => void) => {
+    rerenderTree = observer
 }
 
+//--------------------------- change state functions-----------------------------
+
+export const addPost = () => {
+    const newPost: PostType = {id: v1(), message: state.profilePage.newPostText, likesCount: 0}
+    state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
+    rerenderTree(state)
+}
+
+export const changePostText = (newPostText: string) => {
+    state.profilePage.newPostText = newPostText
+    rerenderTree(state)
+}
+
+// ----------------------- OOP Store -------------------
+
+export type StoreType = {
+    _state: RootStateType
+}
+
+export const store = {
+
+}

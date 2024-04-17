@@ -5,16 +5,22 @@ import {PostType} from "../../../../redux/state";
 
 type MyPostsPropsType = {
     posts: PostType[]
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    changePostText: (newPostText: string) => void
+    newPostText: string
 }
 
-export const MyPosts = ({posts, addPost}: MyPostsPropsType) => {
+export const MyPosts = ({posts, addPost, newPostText, changePostText}: MyPostsPropsType) => {
     const postsElements = posts.map(post => <Post key={post.id} message={post.message} id={post.id}
                                                   likesCount={post.likesCount}/>)
     const newPostElement = React.createRef<HTMLTextAreaElement>()
     const addPostHandler = () => {
+        addPost()
+    }
+
+    const textareaChangeHandler = () => {
         if (newPostElement.current) {
-            addPost(newPostElement.current.value)
+            changePostText(newPostElement.current.value)
         }
     }
     return (
@@ -22,8 +28,13 @@ export const MyPosts = ({posts, addPost}: MyPostsPropsType) => {
             <div className={s.post_input_wrapper}>
                 <span>My Post</span>
                 <div>
-                    <textarea placeholder={'Your news...'} ref={newPostElement}></textarea>
+                    <textarea placeholder={'Your news...'}
+                              onChange={textareaChangeHandler}
+                              ref={newPostElement}
+                              value={newPostText}/>
+
                     {newPostElement.current?.value || <div>Ведите текст</div>}
+
                     <button onClick={addPostHandler}>Send</button>
                 </div>
             </div>
