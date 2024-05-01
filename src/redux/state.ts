@@ -3,20 +3,24 @@ import avatarSasha from '../assets/dialog-avatars/avatarSasha.webp'
 import avatarMisha from '../assets/dialog-avatars/avatarMisha.jpg'
 import avatarOleg from '../assets/dialog-avatars/avatarOleg.jpg'
 import avatarNasty from '../assets/dialog-avatars/avatarNasty.webp'
-import {RootStateType} from "./types";
+import {ActionsTypes, MessageType, RootStateType} from "./types";
+import {dialogsReducer} from "./dialogs-reducer";
+import {profileReducer} from "./profile-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
 
 //-------------------------------- OOP Store -------------------
 
 export type StoreType = {
     _state: RootStateType
-    getState: ()=>RootStateType
-    addPost: ()=>void
-    changePostText: (newPostText: string)=>void
-    _onChange: ()=>void
-    subscribe: (observer:()=>void)=>void
+    getState: () => RootStateType
+    // addPost: ()=>void
+    // changePostText: (newPostText: string)=>void
+    _onChange: () => void
+    subscribe: (observer: () => void) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
-export const store:StoreType = {
+export const store: StoreType = {
     _state: {
         profilePage: {
             newPostText: '',
@@ -35,6 +39,7 @@ export const store:StoreType = {
                 {name: 'Oleg', id: v1(), avatar: avatarOleg},
                 {name: 'Nasty', id: v1(), avatar: avatarNasty},
             ],
+            newMessage: '',
             messages: [
                 {id: v1(), message: 'Hi ',},
                 {id: v1(), message: 'Yo',},
@@ -60,18 +65,21 @@ export const store:StoreType = {
     getState() {
         return this._state
     },
-    addPost() {
-        const newPost = {id: v1(), message: this._state.profilePage.newPostText, likesCount: 0}
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._onChange()
-    },
-    changePostText(newPostText) {
-        this._state.profilePage.newPostText = newPostText
-        this._onChange()
-    },
-    _onChange(){}, // после рендера index.tsx rerenderTree становится функцией renderTree посредством функции subscribe
+    _onChange() {
+    }, // после рендера index.tsx rerenderTree становится функцией renderTree посредством функции subscribe
     subscribe(observer) {
         this._onChange = observer
     },
+
+    dispatch(action) {
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._onChange()
+    },
 }
+
+
+
+
+

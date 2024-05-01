@@ -1,26 +1,27 @@
 import React, {useRef} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {PostType} from "../../../../redux/types";
+import {ActionsTypes, PostType} from "../../../../redux/types";
+import {addPostAC, changePostTextAC} from "../../../../redux/profile-reducer";
 
 type MyPostsPropsType = {
     posts: PostType[]
-    addPost: () => void
-    changePostText: (newPostText: string) => void
+    dispatch: (action: ActionsTypes) => void
     newPostText: string
 }
 
-export const MyPosts = ({posts, addPost, newPostText, changePostText}: MyPostsPropsType) => {
+export const MyPosts = ({posts, dispatch, newPostText}: MyPostsPropsType) => {
     const postsElements = posts.map(post => <Post key={post.id} message={post.message} id={post.id}
                                                   likesCount={post.likesCount}/>)
     const newPostElement = React.createRef<HTMLTextAreaElement>()
     const addPostHandler = () => {
-        addPost()
+        dispatch(addPostAC())
     }
 
     const textareaChangeHandler = () => {
         if (newPostElement.current) {
-            changePostText(newPostElement.current.value)
+            dispatch(changePostTextAC(newPostElement.current.value))
+            // changePostText(newPostElement.current.value)
         }
     }
     return (

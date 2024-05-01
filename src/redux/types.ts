@@ -1,3 +1,6 @@
+import {addPostAC, changePostTextAC} from "./profile-reducer";
+import {addMessageAC, changeMassageTextAC} from "./dialogs-reducer";
+
 export type DialogType = {
     name: string
     id: string
@@ -35,6 +38,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
+    newMessage: string
 }
 
 export type SidebarType = {
@@ -47,3 +51,15 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
+
+
+
+export type AddPostActionType = ReturnType<typeof addPostAC>
+
+export type ChangePostTextActionType = ReturnType<typeof changePostTextAC>
+
+export type AddMessageActionType = ReturnType<typeof addMessageAC>
+
+export type ChangeMessageTextActionType = ReturnType<typeof changeMassageTextAC>
+
+export type ActionsTypes = AddPostActionType | ChangePostTextActionType | AddMessageActionType | ChangeMessageTextActionType
