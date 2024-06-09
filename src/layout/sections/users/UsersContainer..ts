@@ -1,6 +1,3 @@
-import {connect} from "react-redux";
-import {RootStateType} from "../../../redux/redux-store";
-import {Dispatch} from "redux";
 import {
     changeFollowStatusAC,
     setCountUsersAC,
@@ -8,7 +5,11 @@ import {
     setUsersAC,
     UserType
 } from "../../../redux/users-reducer";
-import UsersC from "./UsersC";
+import {RootStateType} from "../../../redux/redux-store";
+import {Dispatch} from "redux";
+import {connect} from "react-redux";
+import UsersAPIComponent from "./UsersC";
+
 
 function mapStateToProps(state: RootStateType) {
     return {
@@ -37,4 +38,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersC)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
