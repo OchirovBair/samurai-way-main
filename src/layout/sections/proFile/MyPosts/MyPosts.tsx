@@ -1,7 +1,7 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import s from './MyPosts.module.css'
-import {PostType} from "../../../../redux/types";
 import {Post} from "./Post/Post";
+import {PostType} from "../../../../redux/profile-reducer";
 
 type MyPostsPropsType = {
     posts: PostType[]

@@ -7,8 +7,8 @@ import {Route} from "react-router-dom";
 import {News} from "./layout/sections/news/News";
 import {Music} from "./layout/sections/music/Music";
 import {Settings} from "./layout/sections/settings/Settings";
-import {StoreType} from "./redux/redux-store";
 import {DialogsContainer} from "./layout/sections/dialogs/DialogsContainer";
+import {UsersContainer} from "./layout/sections/users/UsersContainer.";
 
 type AppPropsType = {
 
@@ -22,6 +22,7 @@ function App({}: AppPropsType) {
             <div className='app-wrapper-content'>
                 <Route path='/profile' render={() => <Profile />}/>
                 <Route path='/dialogs/' render={() => <DialogsContainer />}/>
+                <Route path='/users/' render={() => <UsersContainer />}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>

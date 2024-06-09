@@ -1,12 +1,9 @@
 import React from 'react';
 import {Menu} from "./Menu/Menu";
 import s from './Sidebar.module.css'
-import {RootStateType, SidebarType} from "../../redux/types";
 import {FriendsBar} from './FriendsBar/FriendsBar';
-import {StoreType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
-import {addMessageAC, changeMassageTextAC} from "../../redux/dialogs-reducer";
+import {RootStateType} from "../../redux/redux-store";
 
 type SidebarPropsType = {
 }
@@ -16,21 +13,19 @@ export const Sidebar = ({}:SidebarPropsType) => {
         <nav className={s.sidebar_wrapper}>
             <MenuContainer/>
             <FriendsBarContainer/>
-            {/*<Menu sidebarButtonsName={store.getState().sidebar.sidebarButtonsName}/>*/}
-            {/*<FriendsBar friendsList={store.getState().sidebar.friendsList}/>*/}
         </nav>
     );
 };
 
 function mapStateToMenuProps(state: RootStateType) {
     return {
-        sidebarButtonsName: state.sidebar.sidebarButtonsName,
+        sidebarButtonsName: state.sidebarPage.sidebarButtonsName,
     }
 }
 
 function mapStateToFriendsBarProps(state: RootStateType) {
     return {
-        friendsList: state.sidebar.friendsList,
+        friendsList: state.sidebarPage.friendsList,
     }
 }
 

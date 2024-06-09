@@ -3,10 +3,10 @@ import avatarSasha from '../assets/dialog-avatars/avatarSasha.webp'
 import avatarMisha from '../assets/dialog-avatars/avatarMisha.jpg'
 import avatarOleg from '../assets/dialog-avatars/avatarOleg.jpg'
 import avatarNasty from '../assets/dialog-avatars/avatarNasty.webp'
-import {ActionsTypes, RootStateType} from "./types";
-import {dialogsReducer} from "./dialogs-reducer";
-import {profileReducer} from "./profile-reducer";
-import {sidebarReducer} from "./sidebar-reducer";
+import {DialogsActionsTypes, dialogsReducer} from "./dialogs-reducer";
+import {ProfileActionsTypes, profileReducer} from "./profile-reducer";
+import {SideBarActionsTypes, sidebarReducer} from "./sidebar-reducer";
+import {RootStateType} from "./redux-store";
 
 //-------------------------------- OOP Store -------------------
 
@@ -17,7 +17,7 @@ export type StoreType = {
     // changePostText: (newPostText: string)=>void
     _onChange: () => void
     subscribe: (observer: () => void) => void
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: SideBarActionsTypes | ProfileActionsTypes | DialogsActionsTypes) => void
 }
 
 export const store: StoreType = {

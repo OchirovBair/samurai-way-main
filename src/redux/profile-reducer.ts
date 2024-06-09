@@ -1,4 +1,3 @@
-import {ActionsTypes, ProfilePageType} from "./types";
 import {v1} from "uuid";
 const initialProfileState = {
     newPostText: '',
@@ -10,7 +9,7 @@ const initialProfileState = {
         {id: v1(), message: 'Yo?', likesCount: 21},
     ],
 }
-export const profileReducer = (state:ProfilePageType = initialProfileState, action: ActionsTypes) => {
+export const profileReducer = (state:UsersPageType = initialProfileState, action: ProfileActionsTypes) => {
     switch (action.type) {
         case "ADD-POST":
             const newPost = {id: v1(), message: state.newPostText, likesCount: 0}
@@ -29,4 +28,25 @@ export const addPostAC = () => {
 export const changePostTextAC = (newPostText:string) => {
     debugger
     return {type: 'CHANGE-POST-TEXT', payload: {newPostText}} as const
+}
+
+
+export type AddPostActionType = ReturnType<typeof addPostAC>
+
+export type ChangePostTextActionType = ReturnType<typeof changePostTextAC>
+
+
+export type ProfileActionsTypes = AddPostActionType | ChangePostTextActionType
+
+
+export type UsersPageType = {
+    posts: PostType[]
+    newPostText: string
+}
+
+
+export type PostType = {
+    id: string
+    message: string
+    likesCount: number
 }
