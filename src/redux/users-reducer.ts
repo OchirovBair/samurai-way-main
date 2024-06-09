@@ -2,7 +2,8 @@ const initialProfileState: UsersPageType = {
     users: [],
     totalUsersCount: 30,
     pageSize: 3,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 }
 export const usersReducer = (state = initialProfileState, action: UsersActionsTypes) => {
     switch (action.type) {
@@ -19,6 +20,8 @@ export const usersReducer = (state = initialProfileState, action: UsersActionsTy
             return {...state, totalUsersCount: action.payload.count}
         case "SET-CURRENT-PAGE":
             return {...state, currentPage: action.payload.currentPage}
+        case "SET-IS-FETCHING":
+            return {...state, isFetching: action.payload.fetchStatus}
         default:
             return state
     }
@@ -39,16 +42,22 @@ export const setCurrentPageAC = (currentPage: number) => {
     return {type: 'SET-CURRENT-PAGE', payload: {currentPage}} as const
 }
 
+export const setIsFetchingAC = (fetchStatus: boolean) => {
+    return {type: 'SET-IS-FETCHING', payload: {fetchStatus}} as  const
+}
+
 export type ChangeFollowStatusActionType = ReturnType<typeof changeFollowStatusAC>
 export type SetUsersActionType = ReturnType<typeof setUsersAC>
 export type SetCountUsersActionType = ReturnType<typeof setCountUsersAC>
 export type SetCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
+export type SetIsFetchingActionType = ReturnType<typeof setIsFetchingAC>
 
 export type UsersPageType = {
     users: UserType[]
     totalUsersCount: number
     pageSize: number
     currentPage: number
+    isFetching: boolean
 }
 export type UserType = {
     id: number
@@ -61,7 +70,7 @@ export type UserType = {
         country: string
     }
 }
-export type UsersActionsTypes = ChangeFollowStatusActionType | SetUsersActionType | SetCountUsersActionType | SetCurrentPageActionType
+export type UsersActionsTypes = ChangeFollowStatusActionType | SetUsersActionType | SetCountUsersActionType | SetCurrentPageActionType | SetIsFetchingActionType
 
 export type getUsersResponse = {
     items: UserResponseType[],

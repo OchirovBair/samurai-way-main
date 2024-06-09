@@ -3,6 +3,7 @@ import axios from "axios";
 import {getUsersResponse, UserType} from "../../../redux/users-reducer";
 import userAvatar from "../../../assets/userAvatar.jpg";
 import {Users} from "./Users";
+import {PreLoader} from "../../../components/PreLoader";
 
 
 export type UsersPropsType = {
@@ -14,11 +15,14 @@ export type UsersPropsType = {
     setUsers: (users: UserType[]) => void
     setCountUsers: (count: number) => void
     setCurrentPage: (currentPage: number) => void
+    isFetching: boolean
+    setIsFetching: (fetchStatus: boolean)=>void
 }
 
 class UsersAPIComponent extends React.Component<UsersPropsType> {
     componentDidMount() {
         const getUsersFromServer = (currentPage: number, pageSize: number) => {
+            this.props.setIsFetching(true)
             axios.get<getUsersResponse>(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`, {withCredentials: true})
                 .then(res => {
                     const usersFromServer = res.data.items
@@ -35,6 +39,8 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
                     })
                     console.log(domainUsers)
                     this.props.setUsers(domainUsers)
+                    this.props.setIsFetching(false)
+
                 })
         }
         getUsersFromServer(this.props.currentPage, this.props.pageSize)
@@ -42,6 +48,7 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
+        this.props.setIsFetching(true)
         axios.get<getUsersResponse>(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {withCredentials: true})
             .then(res => {
                 const usersFromServer = res.data.items
@@ -59,6 +66,7 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
                 console.log(domainUsers)
                 this.props.setUsers(domainUsers)
                 // this.props.setCountUsers(40)
+                this.props.setIsFetching(false)
             })
     }
 
@@ -67,12 +75,17 @@ class UsersAPIComponent extends React.Component<UsersPropsType> {
         for (let i = 1; i <= Math.ceil(this.props.totalUsersCount / this.props.pageSize); i++) {
             buttonsArray.push(i)
         }
-        return <Users
-            buttonsArray={buttonsArray}
-            onPageChanged={this.onPageChanged}
-            users={this.props.users}
-            changeFollowStatus={this.props.changeFollowStatus}
-            currentPage={this.props.currentPage}/>
+        return <>
+            {this.props.isFetching
+                ? <PreLoader/>
+                : <Users
+                    buttonsArray={buttonsArray}
+                onPageChanged={this.onPageChanged}
+                users={this.props.users}
+                changeFollowStatus={this.props.changeFollowStatus}
+                currentPage={this.props.currentPage}/>}
+
+        </>
     }
 }
 
