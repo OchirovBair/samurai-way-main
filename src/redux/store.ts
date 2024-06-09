@@ -3,7 +3,7 @@ import avatarSasha from '../assets/dialog-avatars/avatarSasha.webp'
 import avatarMisha from '../assets/dialog-avatars/avatarMisha.jpg'
 import avatarOleg from '../assets/dialog-avatars/avatarOleg.jpg'
 import avatarNasty from '../assets/dialog-avatars/avatarNasty.webp'
-import {ActionsTypes, MessageType, RootStateType} from "./types";
+import {ActionsTypes, RootStateType} from "./types";
 import {dialogsReducer} from "./dialogs-reducer";
 import {profileReducer} from "./profile-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
@@ -11,7 +11,7 @@ import {sidebarReducer} from "./sidebar-reducer";
 //-------------------------------- OOP Store -------------------
 
 export type StoreType = {
-    _state: RootStateType
+    _state: any
     getState: () => RootStateType
     // addPost: ()=>void
     // changePostText: (newPostText: string)=>void

@@ -1,5 +1,6 @@
 import {addPostAC, changePostTextAC} from "./profile-reducer";
 import {addMessageAC, changeMassageTextAC} from "./dialogs-reducer";
+import {rootReducer} from "./redux-store";
 
 export type DialogType = {
     name: string
@@ -46,11 +47,7 @@ export type SidebarType = {
     friendsList: FriendType[]
 }
 
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    sidebar: SidebarType
-}
+export type RootStateType = ReturnType<typeof rootReducer>
 
 
 

@@ -21,8 +21,8 @@ function App({state, dispatch}: AppPropsType) {
             <Header/>
             <Sidebar state={state.sidebar}/>
             <div className='app-wrapper-content'>
-                <Route path='/profile' render={() => <Profile state={state.profilePage} dispatch={dispatch}/>}/>
-                <Route path='/dialogs/' render={() => <Dialogs state={state.dialogsPage} dispatch={dispatch}/>}/>
+                <Route path='/profile' render={() => <Profile state={state.profile} dispatch={dispatch}/>}/>
+                <Route path='/dialogs/' render={() => <Dialogs state={state.dialogs} dispatch={dispatch}/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>

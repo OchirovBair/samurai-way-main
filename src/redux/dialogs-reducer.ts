@@ -1,7 +1,26 @@
-import {ActionsTypes, DialogsPageType, MessageType, ProfilePageType} from "./types";
+import {ActionsTypes, DialogsPageType, MessageType} from "./types";
 import {v1} from "uuid";
+import avatarSasha from "../assets/dialog-avatars/avatarSasha.webp";
+import avatarMisha from "../assets/dialog-avatars/avatarMisha.jpg";
+import avatarOleg from "../assets/dialog-avatars/avatarOleg.jpg";
+import avatarNasty from "../assets/dialog-avatars/avatarNasty.webp";
 
-export const dialogsReducer = (state: DialogsPageType, action: ActionsTypes) => {
+const initialDialogsState = {
+    dialogs: [
+        {name: 'Sasha', id: v1(), avatar: avatarSasha},
+        {name: 'Misha', id: v1(), avatar: avatarMisha},
+        {name: 'Oleg', id: v1(), avatar: avatarOleg},
+        {name: 'Nasty', id: v1(), avatar: avatarNasty},
+    ],
+        newMessage: '',
+        messages: [
+        {id: v1(), message: 'Hi ',},
+        {id: v1(), message: 'Yo',},
+        {id: v1(), message: 'How are you?',},
+        {id: v1(), message: 'Good',},
+    ],
+}
+export const dialogsReducer = (state: DialogsPageType = initialDialogsState, action: ActionsTypes) => {
     switch (action.type) {
         case "ADD-MESSAGE":
             const newMessage: MessageType = {id: v1(), message: state.newMessage}
