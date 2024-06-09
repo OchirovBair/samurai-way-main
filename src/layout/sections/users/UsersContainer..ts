@@ -21,25 +21,34 @@ function mapStateToProps(state: RootStateType) {
     }
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
-    return {
-        changeFollowStatus: (userId: number, followStatus: boolean) => {
-            dispatch(changeFollowStatusAC(userId, followStatus))
-        },
-        setUsers: (users: UserType[]) => {
-            dispatch(setUsersAC(users))
-        },
-        setCountUsers: (count: number)=> {
-            dispatch(setCountUsersAC(count))
-        },
-        setCurrentPage: (currentPage: number)=>{
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        setIsFetching: (fetchStatus: boolean)=> {
-            dispatch(setIsFetchingAC(fetchStatus))
-        }
+// function mapDispatchToProps(dispatch: Dispatch) {
+//     return {
+//         changeFollowStatus: (userId: number, followStatus: boolean) => {
+//             dispatch(changeFollowStatusAC(userId, followStatus))
+//         },
+//         setUsers: (users: UserType[]) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setCountUsers: (count: number)=> {
+//             dispatch(setCountUsersAC(count))
+//         },
+//         setCurrentPage: (currentPage: number)=>{
+//             dispatch(setCurrentPageAC(currentPage))
+//         },
+//         setIsFetching: (fetchStatus: boolean)=> {
+//             dispatch(setIsFetchingAC(fetchStatus))
+//         }
+//
+//     }
+// }
 
-    }
+const mapDispatchToPropsObject = {
+    changeFollowStatus: changeFollowStatusAC,
+    setUsers: setUsersAC,
+    setCountUsers: setCountUsersAC,
+    setCurrentPage: setCurrentPageAC,
+    setIsFetching: setIsFetchingAC
+
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToPropsObject)(UsersAPIComponent)
