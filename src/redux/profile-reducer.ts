@@ -30,5 +30,6 @@ export const addPostAC = () => {
 }
 
 export const changePostTextAC = (newPostText:string) => {
+    debugger
     return {type: 'CHANGE-POST-TEXT', payload: {newPostText}} as const
 }

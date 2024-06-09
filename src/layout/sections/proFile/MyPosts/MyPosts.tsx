@@ -1,27 +1,27 @@
 import React, {useRef} from 'react';
 import s from './MyPosts.module.css'
+import {PostType} from "../../../../redux/types";
 import {Post} from "./Post/Post";
-import {ActionsTypes, PostType} from "../../../../redux/types";
-import {addPostAC, changePostTextAC} from "../../../../redux/profile-reducer";
 
 type MyPostsPropsType = {
     posts: PostType[]
-    dispatch: (action: ActionsTypes) => void
+    addPost: () => void
+    changePostText: (text: string) => void
     newPostText: string
 }
 
-export const MyPosts = ({posts, dispatch, newPostText}: MyPostsPropsType) => {
+export const MyPosts = ({posts, addPost, changePostText, newPostText}: MyPostsPropsType) => {
     const postsElements = posts.map(post => <Post key={post.id} message={post.message} id={post.id}
                                                   likesCount={post.likesCount}/>)
     const newPostElement = React.createRef<HTMLTextAreaElement>()
-    const addPostHandler = () => {
-        dispatch(addPostAC())
+
+    const onAddPostHandler = () => {
+        addPost()
     }
 
     const textareaChangeHandler = () => {
         if (newPostElement.current) {
-            dispatch(changePostTextAC(newPostElement.current.value))
-            // changePostText(newPostElement.current.value)
+            changePostText(newPostElement.current.value)
         }
     }
     return (
@@ -36,7 +36,7 @@ export const MyPosts = ({posts, dispatch, newPostText}: MyPostsPropsType) => {
 
                     {newPostElement.current?.value || <div>Ведите текст</div>}
 
-                    <button onClick={addPostHandler}>Send</button>
+                    <button onClick={onAddPostHandler}>Send</button>
                 </div>
             </div>
             <div>

@@ -10,3 +10,4 @@ export const rootReducer = combineReducers({
 })
 
 export const store = createStore(rootReducer)
+export type StoreType = typeof store

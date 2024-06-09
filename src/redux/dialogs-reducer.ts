@@ -12,8 +12,8 @@ const initialDialogsState = {
         {name: 'Oleg', id: v1(), avatar: avatarOleg},
         {name: 'Nasty', id: v1(), avatar: avatarNasty},
     ],
-        newMessage: '',
-        messages: [
+    newMessage: '',
+    messages: [
         {id: v1(), message: 'Hi ',},
         {id: v1(), message: 'Yo',},
         {id: v1(), message: 'How are you?',},
