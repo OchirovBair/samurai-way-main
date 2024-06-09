@@ -6,9 +6,7 @@ import userAvatar from "../../../assets/userAvatar.jpg";
 import {getUsersResponse, UsersPropsType} from "./Users";
 
 class UsersC extends React.Component<UsersPropsType> {
-    constructor(props: UsersPropsType) {
-        super(props);
-        alert('new')
+    componentDidMount() {
         const getUsersFromServer = () => {
             const result = axios
                 .get<getUsersResponse>('https://social-network.samuraijs.com/api/1.0/users?count=2', {withCredentials: true})
