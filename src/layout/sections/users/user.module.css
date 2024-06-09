@@ -1,3 +1,10 @@
 .userAvatar {
     width: 100px;
 }
+
+.paginationButton {
+    width: 50px;
+}
+.activeButton {
+    background-color: #22b0d0;
+}
